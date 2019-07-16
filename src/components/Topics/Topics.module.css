@@ -1,0 +1,17 @@
+.topics{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: white;
+  align-items: center;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.topic{
+  list-style-type: none;
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+}

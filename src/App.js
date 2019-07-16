@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styles from "./App.module.css";
+import Nav from "./components/Nav/Nav";
+import { Router } from "@reach/router";
+import Article from "./components/Article/Article";
+import Content from "./components/content/Content";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    user: "grumpy19"
+  };
+
+  render() {
+    const { user } = this.state;
+
+    return (
+      <div className={styles.body}>
+        <Nav user={user} />
+        <Router>
+          <Content path="/" user={user} />
+          <Content path="/topics/:slug/articles" user={user} />
+          <Article path='/article/:id' />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
