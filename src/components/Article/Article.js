@@ -16,7 +16,7 @@ class Article extends Component {
     return (
       <main className={styles.article}>
         <section className={styles.heading}>
-         <Votes score={article.votes} article_id={article.article_id} handleVote={this.handleVote}/>
+         <Votes type="articles" score={article.votes} id={article.article_id} />
           <main className={styles.contents}>
             <div className={styles.subtext}>
               <h5><Link to={`/topics/${article.topic}/articles`}>

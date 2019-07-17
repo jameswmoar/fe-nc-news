@@ -1,0 +1,42 @@
+.articlebox {
+  display: flex;
+  border: 1px solid black;
+  background-color: white;
+  list-style-type: none;
+  margin: 1rem;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtext {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 3rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-left: 3rem;
+}
+
+@media screen and (max-width:480px){
+
+  .articlebox{
+    display: flex;
+  }
+  .subtext {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 1rem;
+    font-size: 0.7rem;
+  }
+  .title {
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+}

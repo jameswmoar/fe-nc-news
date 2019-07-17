@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { getComments, deleteComment } from "../../utils/axios-requests";
-import styles from "./Comments.module.css";
-import Votes from "../Votes/Votes";
-import { formatDate } from "../../utils/utils";
-import { Link } from "@reach/router";
+// import styles from "./Comments.module.css";
 import CommentAdder from "../CommentAdder/CommentAdder";
-import bin from "../../images/bin.png";
+import CommentsCard from "../CommentsCard/CommentsCard";
 
 class Comments extends Component {
   state = {
@@ -22,37 +19,7 @@ class Comments extends Component {
         <ul>
           {comments.map(comment => {
             return (
-              <li key={comment.comment_id} className={styles.comment}>
-                <Votes
-                  score={comment.votes}
-                  comment_id={comment.comment_id}
-                  handleVote={this.handleVote}
-                />
-                <main className={styles.contents}>
-                  <div className={styles.subtext}>
-                    <h5>
-                      <Link to={`/users/${comment.author}`}>
-                        {comment.author}
-                      </Link>{" "}
-                      {"\u00A0"}{" "}
-                    </h5>
-                    <h5>{formatDate(comment.created_at)}</h5>
-                    {comment.author === user ? (
-                      <button
-                        className={styles.binButton}
-                        onClick={() => this.handleDelete(comment.comment_id)}
-                      >
-                        <img
-                          className={styles.bin}
-                          src={bin}
-                          alt="delete comment"
-                        />
-                      </button>
-                    ) : null}
-                  </div>
-                  {comment.body}
-                </main>
-              </li>
+              <CommentsCard key={comment.comment_id} comment={comment} user={user} handleVote={this.handleVote}/>
             );
           })}
         </ul>

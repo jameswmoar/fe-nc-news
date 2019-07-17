@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { getArticles } from "../../utils/axios-requests";
 import styles from "./Articles.module.css";
-import { Link } from "@reach/router";
-import { formatDate } from "../../utils/utils";
-import Votes from "../Votes/Votes";
+import ArticlesCard from "../ArticlesCard/ArticlesCard";
 
 class Articles extends Component {
   state = {
@@ -18,32 +16,7 @@ class Articles extends Component {
           <ul className={styles.content}>
             {articles.map(article => {
               return (
-                <li key={article.article_id} className={styles.articlebox}>
-                  <Votes
-                    score={article.votes}
-                    article_id={article.article_id}
-                    handleVote={this.handleVote}
-                  />
-                  <main className={styles.article}>
-                    <div className={styles.subtext}>
-                      <h5>
-                        <Link to={`/topics/${article.topic}/articles`}>
-                          {article.topic}
-                        </Link>
-                      </h5>{" "}
-                      {"\u00A0"}{" "}
-                      <h5>
-                        <Link to={`/users/${article.author}`}>
-                          {article.author}
-                        </Link>
-                      </h5>{" "}
-                      {"\u00A0"} <h5>{formatDate(article.created_at)}</h5>
-                    </div>
-                    <Link to={`/articles/${article.article_id}`}>
-                      <h3 className={styles.title}>{article.title}</h3>
-                    </Link>
-                  </main>
-                </li>
+                <ArticlesCard key={article.article_id} handleVote={this.handleVote} article={article}/>
               );
             })}
           </ul>
