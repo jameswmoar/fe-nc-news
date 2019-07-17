@@ -13,34 +13,40 @@ class Articles extends Component {
     return (
       <section>
         {articles ? (
-          <ul className={styles.content}>
+          <div className={styles.content}>
             {articles.map(article => {
               return (
                 <ArticlesCard key={article.article_id} handleVote={this.handleVote} article={article}/>
               );
             })}
-          </ul>
+          </div>
         ) : null}
       </section>
     );
   }
 
   componentDidMount() {
+    this.fetchArticles()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const didTopicChange = prevProps.topic !== this.props.topic
+    const didUserChange = prevProps.user_id !== this.props.user_id
+    const didSortChange = prevProps.sort !== this.props.sort
+    const didOrderChange = prevProps.order !== this.props.order
+
+    if (didTopicChange || didUserChange || didSortChange || didOrderChange) {
+      this.fetchArticles()
+      };
+    }
+  
+
+  fetchArticles = () => {
     getArticles(this.props).then(articles => {
       this.setState({
         articles
       });
-    });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.topic !== this.props.topic || prevProps.user_id !== this.props.user_id) {
-      getArticles(this.props).then(articles => {
-        this.setState({
-          articles
-        });
-      });
-    }
+    })
   }
 
   handleVote = votedArticle => {
@@ -53,7 +59,8 @@ class Articles extends Component {
     this.setState({
       articles: newArticles
     })
-  };
+  }
+
 }
 
 export default Articles;

@@ -4,12 +4,14 @@ const request = axios.create({
   baseURL: "https://nc-news-james.herokuapp.com/api"
 });
 
-export const getArticles = ({ topic, user_id }) => {
+export const getArticles = ({ topic, user_id, sort, order }) => {
   return request
     .get("/articles", {
       params: {
         topic,
-        author: user_id
+        author: user_id,
+        sort_by: sort,
+        order
       }
     })
     .then(({ data }) => data.articles);
@@ -40,5 +42,5 @@ export const deleteComment = id => {
 };
 
 export const patchVote = (type, increment, id) => {
-  return request.patch(`${type}/${id}`, { inc_votes: increment });
+  return request.patch(`${type}/${id}`, { inc_votes: increment })
 };

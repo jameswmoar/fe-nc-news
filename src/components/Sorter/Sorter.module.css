@@ -1,0 +1,10 @@
+
+.sorter{
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}

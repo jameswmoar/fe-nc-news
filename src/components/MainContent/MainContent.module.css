@@ -1,11 +1,15 @@
-.content{
+.main_page_all{
   display: flex;
-  flex-basis: 1;
-  justify-content: right;
+  flex-direction: column;
+}
+
+.articles_topics{
+  display: flex;
+  justify-content: flex-start;
 }
 
 @media screen and (max-width:480px){
-  .content{
+  .articles_topics{
     display: flex;
     flex-direction: column-reverse;
   }

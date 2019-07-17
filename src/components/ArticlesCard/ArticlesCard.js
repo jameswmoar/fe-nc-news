@@ -8,7 +8,7 @@ const ArticlesCard = ({ article, handleVote }) => {
   const { votes, article_id, topic, author, created_at, title } = article;
   return (
     <li className={styles.articlebox}>
-      <Votes type="comments" score={votes} id={article_id} />
+      <Votes type="articles" score={votes} id={article_id} />
       <main className={styles.article}>
         <div className={styles.subtext}>
           <h5>
