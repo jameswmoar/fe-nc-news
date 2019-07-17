@@ -1,0 +1,12 @@
+.content{
+  display: flex;
+  flex-basis: 1;
+  justify-content: right;
+}
+
+@media screen and (max-width:480px){
+  .content{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

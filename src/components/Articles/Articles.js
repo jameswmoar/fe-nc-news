@@ -1,63 +1,86 @@
 import React, { Component } from "react";
-import {getArticles} from "../../utils/axios-requests";
+import { getArticles } from "../../utils/axios-requests";
 import styles from "./Articles.module.css";
-import up from '../../images/thumbs-up.png';
-import down from '../../images/thumbs-down.png';
-import {Link} from '@reach/router'
+import { Link } from "@reach/router";
+import { formatDate } from "../../utils/utils";
+import Votes from "../Votes/Votes";
 
 class Articles extends Component {
   state = {
-    articles: []
+    articles: null
   };
 
   render() {
     const { articles } = this.state;
     return (
-      <section className={styles.content}>
-        <ul>
-          {articles.map(article => {
-            const date = new Date(article.created_at);
-            return (
-              <li key={article.article_id} className={styles.article}>
-                <aside className={styles.votes}>
-                  <img src={up} alt="Vote up" className={styles.thumb}/>
-                  <img src={down} alt="Vote down"className={styles.thumb}/>
-                 </aside>
-                 
-                <main className={styles.contents}>
-                  <div className={styles.subtext}>
-                    <Link to='/topics/:slug/articles'>
-                    <h5>{article.topic}</h5>
+      <section>
+        {articles ? (
+          <ul className={styles.content}>
+            {articles.map(article => {
+              return (
+                <li key={article.article_id} className={styles.articlebox}>
+                  <Votes
+                    score={article.votes}
+                    article_id={article.article_id}
+                    handleVote={this.handleVote}
+                  />
+                  <main className={styles.article}>
+                    <div className={styles.subtext}>
+                      <h5>
+                        <Link to={`/topics/${article.topic}/articles`}>
+                          {article.topic}
+                        </Link>
+                      </h5>{" "}
+                      {"\u00A0"}{" "}
+                      <h5>
+                        <Link to={`/users/${article.author}`}>
+                          {article.author}
+                        </Link>
+                      </h5>{" "}
+                      {"\u00A0"} <h5>{formatDate(article.created_at)}</h5>
+                    </div>
+                    <Link to={`/articles/${article.article_id}`}>
+                      <h3 className={styles.title}>{article.title}</h3>
                     </Link>
-                    <Link to='/users/:userid'>
-                    <h5>{article.author}</h5>
-                    </Link>
-                    <h5>
-                      Posted on {date.getDate()}/{date.getMonth()}/
-                      {date.getFullYear()} at {date.getHours()}:
-                      {date.getMinutes()}
-                    </h5>
-                  </div>
-                  <Link to='/article/:id'>
-                  <h3 className={styles.title}>{article.title}</h3>
-                  
-                </Link>
-                </main>
-              </li>
-            );
-          })}
-        </ul>
+                  </main>
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
       </section>
     );
   }
 
   componentDidMount() {
-    getArticles().then(articles => {
+    getArticles(this.props).then(articles => {
       this.setState({
         articles
       });
     });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.topic !== this.props.topic || prevProps.user_id !== this.props.user_id) {
+      getArticles(this.props).then(articles => {
+        this.setState({
+          articles
+        });
+      });
+    }
+  }
+
+  handleVote = votedArticle => {
+    const newArticles = this.state.articles.map(article => {
+      if (article.article_id === votedArticle.article_id) {
+        return votedArticle;
+      }
+      return article;
+    });
+    this.setState({
+      articles: newArticles
+    })
+  };
 }
 
 export default Articles;

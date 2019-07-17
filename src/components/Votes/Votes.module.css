@@ -1,0 +1,19 @@
+.votes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 4rem;
+  align-items: center;
+}
+
+.thumb {
+  max-height: 30px;
+  max-width: 30px;
+}
+
+.button{
+  border: none;
+  background-color: white;
+  width: 45px;
+  height: 40px;
+}

@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import Nav from "./components/Nav/Nav";
 import { Router } from "@reach/router";
 import Article from "./components/Article/Article";
-import Content from "./components/content/Content";
+import MainContent from "./components/MainContent/MainContent";
 
 class App extends React.Component {
   state = {
@@ -17,9 +17,10 @@ class App extends React.Component {
       <div className={styles.body}>
         <Nav user={user} />
         <Router>
-          <Content path="/" user={user} />
-          <Content path="/topics/:slug/articles" user={user} />
-          <Article path='/article/:id' />
+          <MainContent path="/" user={user} />
+          <MainContent path="/topics/:slug/articles" user={user} />
+          <MainContent path="/users/:user_id" />
+          <Article path='/articles/:id' user={user}/>
         </Router>
       </div>
     );

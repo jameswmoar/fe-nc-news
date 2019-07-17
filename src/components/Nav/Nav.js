@@ -2,11 +2,12 @@ import React from "react";
 import styles from "./Nav.module.css";
 import create from "../../images/create.png";
 import profile from "../../images/profile.png";
+import { Link } from "@reach/router";
 
 const Nav = ({ user }) => {
   return (
     <nav className={styles.nav}>
-      <h1 className={styles.logo}>NC News</h1>
+      <h1 className={styles.logo}><Link to='/' className={styles.ncnews}>NC News</Link></h1>
       <h2 className={styles.rightportion}>
         <img className={styles.smallImage} src={create} alt="create article" />
         <div className={styles.user}>
