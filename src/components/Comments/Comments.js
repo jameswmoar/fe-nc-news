@@ -6,16 +6,19 @@ import CommentsCard from "../CommentsCard/CommentsCard";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Sorter from "../Sorter/Sorter";
+import Pagination from "../Pagination/Pagination";
 
 class Comments extends Component {
   state = {
     comments: null,
     err: null,
-    isLoading: true
+    isLoading: true,
+    page: 1,
+    total_count: 0
   };
 
   render() {
-    const { comments, err, isLoading } = this.state;
+    const { comments, err, isLoading, page, total_count } = this.state;
     const { id, user } = this.props;
     if (err) return <ErrorPage />;
     else if (isLoading) return <Loading />;
@@ -44,6 +47,11 @@ class Comments extends Component {
               );
             })}
           </div>
+          <Pagination
+            handlePageChange={this.handlePageChange}
+            totalCount={total_count}
+            page={page}
+          />
         </>
       );
     }
@@ -71,11 +79,13 @@ class Comments extends Component {
     }
   }
 
-  fetchComments = () => {
-    getComments(this.props).then(comments => {
+  fetchComments = (page = 1) => {
+    getComments(this.props, page).then(({ comments, total_count }) => {
       this.setState({
         comments,
-        isLoading: false
+        isLoading: false,
+        total_count,
+        page
       });
     });
   };
@@ -97,16 +107,9 @@ class Comments extends Component {
     });
   };
 
-  handleVote = votedComment => {
-    const newComments = this.state.comments.map(comment => {
-      if (comment.comment_id === votedComment.comment_id) {
-        return votedComment;
-      }
-      return comment;
-    });
-    this.setState({
-      comments: newComments
-    });
+  handlePageChange = page => {
+    console.log(page)
+    this.fetchComments(page);
   };
 }
 

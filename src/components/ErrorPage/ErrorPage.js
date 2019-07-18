@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './ErrorPage.module.css'
+import React from "react";
+import styles from "./ErrorPage.module.css";
 
-const ErrorPage = (err) => {
+const ErrorPage = err => {
   return (
     <div className={styles.error_page}>
       <h2>Oops! Something went wrong...</h2>

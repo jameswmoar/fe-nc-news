@@ -28,7 +28,6 @@ class Articles extends Component {
                 <ArticlesCard
                   user={this.props.user}
                   key={article.article_id}
-                  handleVote={this.handleVote}
                   article={article}
                 />
               );
@@ -66,7 +65,7 @@ class Articles extends Component {
     }
   }
 
-  fetchArticles = (page=1) => {
+  fetchArticles = (page = 1) => {
     getArticles(this.props, page)
       .then(({ articles, total_count }) => {
         this.setState({
@@ -84,21 +83,8 @@ class Articles extends Component {
       });
   };
 
-  handlePageChange = (page) => {
-    this.fetchArticles(page)
-  };
-  
-
-  handleVote = votedArticle => {
-    const newArticles = this.state.articles.map(article => {
-      if (article.article_id === votedArticle.article_id) {
-        return votedArticle;
-      }
-      return article;
-    });
-    this.setState({
-      articles: newArticles
-    });
+  handlePageChange = page => {
+    this.fetchArticles(page);
   };
 }
 

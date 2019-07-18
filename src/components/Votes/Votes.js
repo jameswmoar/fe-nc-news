@@ -36,7 +36,7 @@ class Votes extends Component {
     patchVote(type, increment, id);
     this.setState(state => {
       return { countModifier: (state.countModifier += increment) };
-    })
+    });
   };
 }
 

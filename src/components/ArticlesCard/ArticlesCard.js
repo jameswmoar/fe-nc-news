@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 import { formatDate } from "../../utils/utils";
 import Votes from "../Votes/Votes";
 
-const ArticlesCard = ({ article, handleVote, user }) => {
+const ArticlesCard = ({ article, user }) => {
   const { votes, article_id, topic, author, created_at, title } = article;
   return (
     <li className={styles.articlebox}>
