@@ -9,7 +9,8 @@ const Nav = ({ user }) => {
     <nav className={styles.nav}>
       <h1 className={styles.logo}><Link to='/' className={styles.ncnews}>NC News</Link></h1>
       <h2 className={styles.rightportion}>
-        <img className={styles.smallImage} src={create} alt="create article" />
+        <Link to={`/users/${user}/post_article`}><img className={styles.smallImage} src={create} alt="create article" />
+        </Link>
         <div className={styles.user}>
           <h3>{user ? user : "Not logged in"}</h3>
           <img className={styles.smallImage} src={profile} alt="profile" />

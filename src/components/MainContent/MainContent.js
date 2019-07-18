@@ -15,11 +15,13 @@ state = {
     const {sort, order} = this.state
     return (
       <main className={styles.articles_topics}>
-      <Articles sort={sort} order={order} setSort={this.setSort} user={user} topic={slug} user_id={user_id}/>
+      <Articles sort={sort} order={order} setSort={this.setSort} user={user} topic={slug} user_id={user_id} />
       <Sidebar setSort={this.setSort}/>
     </main>
   );
 }
+
+
 
 setSort = (e) => {
   const {value} = e.target

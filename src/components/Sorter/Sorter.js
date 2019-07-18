@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Sorter.module.css'
 
-const Sorter = ({setSort}) => {
+const Sorter = ({setSort, type}) => {
   return (
     <section className={styles.sorter}>
       Sort by <select onChange={setSort}>
@@ -9,7 +9,9 @@ const Sorter = ({setSort}) => {
         <option value="created_at,asc">Oldest</option>
         <option value="votes,desc">Most popular</option>
         <option value="votes,asc">Most Controversial</option>
-        <option value="comment_count,asc">Most Discussed</option>
+        {type === "article" ? <option value="comment_count,desc">Most Discussed</option> : null
+      }
+        
       </select>
     </section>
   );

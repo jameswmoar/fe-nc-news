@@ -5,6 +5,7 @@ import CommentAdder from "../CommentAdder/CommentAdder";
 import CommentsCard from "../CommentsCard/CommentsCard";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Sorter from "../Sorter/Sorter";
 
 class Comments extends Component {
   state = {
@@ -21,8 +22,15 @@ class Comments extends Component {
     else {
       return (
         <>
-          <CommentAdder id={id} user={user} addComment={this.addComment} />
-          <h1 className={styles.comments_heading}>Comments</h1>
+          {user ? 
+          <CommentAdder id={id} user={user} addComment={this.addComment} /> : null
+          }
+          <h1 className={styles.comments_heading}>
+          Comments
+          </h1>
+          
+          <section className={styles.sorter}> <Sorter setSort={this.props.setSort}/></section>
+
           <div>
             {comments.map(comment => {
               return (
@@ -41,13 +49,35 @@ class Comments extends Component {
   }
 
   componentDidMount() {
-    getComments(this.props.id).then(comments => {
+    this.fetchComments()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const didTopicChange = prevProps.topic !== this.props.topic;
+    const didUserChange = prevProps.user_id !== this.props.user_id;
+    const didSortChange = prevProps.sort !== this.props.sort;
+    const didOrderChange = prevProps.order !== this.props.order;
+    const didPageChange = prevState.p !== this.state.p;
+
+    if (
+      didTopicChange ||
+      didUserChange ||
+      didSortChange ||
+      didOrderChange ||
+      didPageChange
+    ) {
+      this.fetchComments();
+    }
+  }
+
+  fetchComments = () => {
+    getComments(this.props).then(comments => {
       this.setState({
         comments,
         isLoading: false
       });
     });
-  }
+  };
 
   addComment = newComment => {
     const updatedComments = [newComment, ...this.state.comments];

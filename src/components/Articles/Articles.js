@@ -4,16 +4,19 @@ import styles from "./Articles.module.css";
 import ArticlesCard from "../ArticlesCard/ArticlesCard";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Pagination from "../Pagination/Pagination";
 
 class Articles extends Component {
   state = {
     articles: null,
     err: null,
-    isLoading: true
+    isLoading: true,
+    page: 1,
+    total_count: 0
   };
 
   render() {
-    const { articles, err, isLoading } = this.state;
+    const { articles, err, isLoading, total_count, page } = this.state;
     if (err) return <ErrorPage />;
     else if (isLoading) return <Loading />;
     else {
@@ -30,7 +33,11 @@ class Articles extends Component {
               );
             })}
           </div>
-          )
+          <Pagination
+            handlePageChange={this.handlePageChange}
+            totalCount={total_count}
+            page={page}
+          />
         </section>
       );
     }
@@ -45,18 +52,27 @@ class Articles extends Component {
     const didUserChange = prevProps.user_id !== this.props.user_id;
     const didSortChange = prevProps.sort !== this.props.sort;
     const didOrderChange = prevProps.order !== this.props.order;
+    const didPageChange = prevState.p !== this.state.p;
 
-    if (didTopicChange || didUserChange || didSortChange || didOrderChange) {
+    if (
+      didTopicChange ||
+      didUserChange ||
+      didSortChange ||
+      didOrderChange ||
+      didPageChange
+    ) {
       this.fetchArticles();
     }
   }
 
-  fetchArticles = () => {
-    getArticles(this.props)
-      .then(articles => {
+  fetchArticles = (page=1) => {
+    getArticles(this.props, page)
+      .then(({ articles, total_count }) => {
         this.setState({
           articles,
-          isLoading: false
+          isLoading: false,
+          total_count,
+          page
         });
       })
       .catch(err => {
@@ -66,6 +82,11 @@ class Articles extends Component {
         });
       });
   };
+
+  handlePageChange = (page) => {
+    this.fetchArticles(page)
+  };
+  
 
   handleVote = votedArticle => {
     const newArticles = this.state.articles.map(article => {

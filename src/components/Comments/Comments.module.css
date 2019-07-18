@@ -2,8 +2,16 @@
   margin-left: 2rem;
 }
 
+.sorter{
+  display: flex;
+  margin-left: 2rem;
+}
+
 @media screen and (max-width:650px) {
   .comments_heading{
+    margin-left: 1rem;
+  }
+  .sorter{
     margin-left: 1rem;
   }
 }

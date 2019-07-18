@@ -47,7 +47,7 @@ class Article extends Component {
           </section>
           <p className={styles.body}>{article.body}</p>
           <section>
-            <Comments id={this.props.id} user={this.props.user} />
+            <Comments setSort={this.props.setSort} id={this.props.id} user={this.props.user} sort={this.props.sort} order={this.props.order}/>
           </section>
         </main>
       );

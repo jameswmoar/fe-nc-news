@@ -6,7 +6,7 @@ import styles from './Sidebar.module.css'
 const Sidebar = ({setSort}) => {
   return (
     <aside className={styles.sidebar_content}>
-      <Sorter setSort={setSort}/>
+      <Sorter setSort={setSort} type="article"/>
       <Topics />
     </aside>
   );

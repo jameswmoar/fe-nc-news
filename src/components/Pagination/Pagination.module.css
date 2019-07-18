@@ -1,0 +1,28 @@
+.page_nav {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.arrow {
+  height: 50px;
+  width: 50px;
+}
+
+.nav_button {
+  border: none;
+  background-color: transparent;
+}
+
+.numbers {
+  display: flex;
+}
+
+.page_num {
+  width: 50px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+}
