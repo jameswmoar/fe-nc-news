@@ -13,7 +13,7 @@ class CommentAdder extends Component {
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <h3>Got something to say?</h3>
-        <textarea rows="5" placeholder="Enter Comment" value={input} onChange={this.handleChange} className={styles.input}></textarea>
+        <textarea required rows="5" placeholder="Enter Comment" value={input} onChange={this.handleChange} className={styles.input}></textarea>
         <button >Post Comment</button>
       </form>
     );

@@ -4,8 +4,7 @@
   border: 1px solid black;
   background-color: white;
   list-style-type: none;
-  margin-right: 1em;
-  margin-bottom: 1em;
+  margin: 2rem;
   flex-basis: fill;
 }
 
@@ -20,10 +19,6 @@
   justify-content: flex-start;
 }
 
-h1{
-  margin-left: 1rem;
-}
-
 .binButton{
   border: none;
   background-color: white;
@@ -32,4 +27,14 @@ h1{
 .bin{
   width: 25px;
   height: 25px;
+}
+
+@media screen and (max-width:650px) {
+.comment {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+.subtext{
+  flex-wrap: wrap;
+}
 }

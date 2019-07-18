@@ -6,7 +6,7 @@ import { formatDate } from "../../utils/utils";
 import { Link } from "@reach/router";
 import bin from "../../images/bin.png";
 
-const CommentsCard = ({comment, user, handleVote}) => {
+const CommentsCard = ({comment, user, handleDelete}) => {
   return (
       <li className={styles.comment}>
                 <Votes
@@ -26,7 +26,7 @@ const CommentsCard = ({comment, user, handleVote}) => {
                     {comment.author === user ? (
                       <button
                         className={styles.binButton}
-                        onClick={() => this.handleDelete(comment.comment_id)}
+                        onClick={() => handleDelete(comment.comment_id)}
                       >
                         <img
                           className={styles.bin}
@@ -36,7 +36,9 @@ const CommentsCard = ({comment, user, handleVote}) => {
                       </button>
                     ) : null}
                   </div>
+                  <p className={styles.body}>
                   {comment.body}
+                  </p>
                 </main>
               </li>
   );

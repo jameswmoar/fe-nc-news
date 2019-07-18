@@ -1,36 +1,50 @@
 import React, { Component } from "react";
 import { getComments, deleteComment } from "../../utils/axios-requests";
-// import styles from "./Comments.module.css";
+import styles from "./Comments.module.css";
 import CommentAdder from "../CommentAdder/CommentAdder";
 import CommentsCard from "../CommentsCard/CommentsCard";
+import Loading from "../Loading/Loading";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 class Comments extends Component {
   state = {
-    comments: []
+    comments: null,
+    err: null,
+    isLoading: true
   };
 
   render() {
-    const { comments } = this.state;
+    const { comments, err, isLoading } = this.state;
     const { id, user } = this.props;
-    return (
-      <>
-        <CommentAdder id={id} user={user} addComment={this.addComment} />
-        <h1>Comments</h1>
-        <ul>
-          {comments.map(comment => {
-            return (
-              <CommentsCard key={comment.comment_id} comment={comment} user={user} handleVote={this.handleVote}/>
-            );
-          })}
-        </ul>
-      </>
-    );
+    if (err) return <ErrorPage />;
+    else if (isLoading) return <Loading />;
+    else {
+      return (
+        <>
+          <CommentAdder id={id} user={user} addComment={this.addComment} />
+          <h1 className={styles.comments_heading}>Comments</h1>
+          <div>
+            {comments.map(comment => {
+              return (
+                <CommentsCard
+                  key={comment.comment_id}
+                  comment={comment}
+                  user={user}
+                  handleDelete={this.handleDelete}
+                />
+              );
+            })}
+          </div>
+        </>
+      );
+    }
   }
 
   componentDidMount() {
     getComments(this.props.id).then(comments => {
       this.setState({
-        comments
+        comments,
+        isLoading: false
       });
     });
   }

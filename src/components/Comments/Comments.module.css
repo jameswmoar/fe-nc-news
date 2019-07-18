@@ -1,0 +1,9 @@
+.comments_heading{
+  margin-left: 2rem;
+}
+
+@media screen and (max-width:650px) {
+  .comments_heading{
+    margin-left: 1rem;
+  }
+}

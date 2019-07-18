@@ -7,8 +7,8 @@
 }
 
 .thumb {
-  max-height: 30px;
-  max-width: 30px;
+  max-height: 2rem;
+  max-width: 2rem;
 }
 
 .button{
@@ -16,4 +16,14 @@
   background-color: white;
   width: 45px;
   height: 40px;
+}
+
+@media screen and (max-width:650px) {
+  .votes {
+    width: 3rem;
+  }
+  .thumb {
+    max-height: 1.5rem;
+    max-width: 1.5rem;
+  }
 }

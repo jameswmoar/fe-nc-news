@@ -4,6 +4,7 @@ import Nav from "./components/Nav/Nav";
 import { Router } from "@reach/router";
 import Article from "./components/Article/Article";
 import MainContent from "./components/MainContent/MainContent";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 class App extends React.Component {
   state = {
@@ -21,6 +22,7 @@ class App extends React.Component {
           <MainContent path="/topics/:slug/articles" user={user} />
           <MainContent path="/users/:user_id" />
           <Article path='/articles/:id' user={user}/>
+          <ErrorPage path="/*"/>
         </Router>
       </div>
     );
