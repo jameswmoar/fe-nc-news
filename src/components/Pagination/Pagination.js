@@ -4,7 +4,6 @@ import next from "../../images/next-page.png";
 import prev from "../../images/prev-page.png";
 
 const Pagination = ({ totalCount, handlePageChange, page }) => {
-  console.log(page)
   const totalPages = Math.ceil(totalCount / 10);
   return (
     <section className={styles.page_nav}>

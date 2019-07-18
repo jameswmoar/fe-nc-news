@@ -39,6 +39,16 @@
   margin-right: 4rem;
 }
 
+.bin{
+  width: 25px;
+  height: 25px;
+}
+
+.binButton{
+  border: none;
+  background-color: white;
+}
+
 @media screen and (max-width: 650px) {
   .subtext {
     display: flex;

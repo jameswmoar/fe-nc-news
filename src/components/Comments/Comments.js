@@ -22,14 +22,15 @@ class Comments extends Component {
     else {
       return (
         <>
-          {user ? 
-          <CommentAdder id={id} user={user} addComment={this.addComment} /> : null
-          }
-          <h1 className={styles.comments_heading}>
-          Comments
-          </h1>
-          
-          <section className={styles.sorter}> <Sorter setSort={this.props.setSort}/></section>
+          {user ? (
+            <CommentAdder id={id} user={user} addComment={this.addComment} />
+          ) : null}
+          <h1 className={styles.comments_heading}>Comments</h1>
+
+          <section className={styles.sorter}>
+            {" "}
+            <Sorter setSort={this.props.setSort} />
+          </section>
 
           <div>
             {comments.map(comment => {
@@ -49,7 +50,7 @@ class Comments extends Component {
   }
 
   componentDidMount() {
-    this.fetchComments()
+    this.fetchComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -79,21 +80,20 @@ class Comments extends Component {
     });
   };
 
-  addComment = newComment => {
-    const updatedComments = [newComment, ...this.state.comments];
-    this.setState({
-      comments: updatedComments
-    });
-  };
-
   handleDelete = id => {
     deleteComment(id);
     const newComments = this.state.comments.filter(
       comment => comment.comment_id !== id
     );
-
     this.setState({
       comments: newComments
+    });
+  };
+
+  addComment = newComment => {
+    const updatedComments = [newComment, ...this.state.comments];
+    this.setState({
+      comments: updatedComments
     });
   };
 

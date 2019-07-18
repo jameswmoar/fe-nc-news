@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styles from "./CommentsCard.module.css";
 import Votes from "../Votes/Votes";
 import { formatDate } from "../../utils/utils";

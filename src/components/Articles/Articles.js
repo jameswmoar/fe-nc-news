@@ -26,6 +26,7 @@ class Articles extends Component {
             {articles.map(article => {
               return (
                 <ArticlesCard
+                  user={this.props.user}
                   key={article.article_id}
                   handleVote={this.handleVote}
                   article={article}

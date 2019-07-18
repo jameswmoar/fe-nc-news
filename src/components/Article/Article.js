@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { getArticle } from "../../utils/axios-requests";
+import { getArticle, deleteArticle } from "../../utils/axios-requests";
 import styles from "./Article.module.css";
 import { formatDate } from "../../utils/utils";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import Comments from "../Comments/Comments";
 import Votes from "../Votes/Votes";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import bin from "../../images/bin.png";
+
 
 class Article extends Component {
   state = {
@@ -16,38 +18,52 @@ class Article extends Component {
   };
 
   render() {
-    const { article, isLoading, err } = this.state;
+    const { isLoading, err } = this.state;
     if (err) return <ErrorPage />;
     else if (isLoading) return <Loading />;
     else {
+      const {votes, article_id, topic, author, created_at, title, body} = this.state.article
+      const {user} = this.props
       return (
         <main className={styles.article}>
           <section className={styles.article_heading}>
             <Votes
               type="articles"
-              score={article.votes}
-              id={article.article_id}
+              score={votes}
+              id={article_id}
             />
             <main className={styles.heading_contents}>
               <div className={styles.subtext}>
                 <h5>
-                  <Link to={`/topics/${article.topic}/articles`}>
-                    {article.topic}
+                  <Link to={`/topics/${topic}/articles`}>
+                    {topic}
                   </Link>
                 </h5>
                 {"\u00A0"}
                 <h5>
-                  <Link to={`/users/${article.author}`}>{article.author}</Link>
+                  <Link to={`/users/${author}`}>{author}</Link>
                 </h5>{" "}
                 {"\u00A0"}
-                <h5>{formatDate(article.created_at)}</h5>
+                <h5>{formatDate(created_at)}</h5>
+                {author === user ? (
+                      <button
+                        className={styles.binButton}
+                        onClick={() => this.handleDelete(article_id)}
+                      >
+                        <img
+                          className={styles.bin}
+                          src={bin}
+                          alt="delete comment"
+                        />
+                      </button>
+                    ) : null}
               </div>
-              <h3 className={styles.title}>{article.title}</h3>
+              <h3 className={styles.title}>{title}</h3>
             </main>
           </section>
-          <p className={styles.body}>{article.body}</p>
+          <p className={styles.body}>{body}</p>
           <section>
-            <Comments setSort={this.props.setSort} id={this.props.id} user={this.props.user} sort={this.props.sort} order={this.props.order}/>
+            <Comments setSort={this.props.setSort} id={this.props.id} user={this.props.user} sort={this.props.sort} order={this.props.order} handleDelete={this.handleDelete}/>
           </section>
         </main>
       );
@@ -67,6 +83,12 @@ class Article extends Component {
       })
     })
   }
+
+  handleDelete = (id) => {
+    deleteArticle(id).then(() => {
+      navigate('/')
+    })
+  };
 
   handleVote = votedArticle => {
     this.setState({
