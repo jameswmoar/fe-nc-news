@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid black;
-  background-color: #f2baa7;
+  background-color: #025bb4;
 }
 
 .logo{
@@ -16,6 +16,10 @@
 .ncnews:link, .ncnews:visited{
   text-decoration: none;
   color: black;
+}
+
+.ncnews:hover{
+  text-decoration: underline;
 }
 
 .rightportion{
@@ -33,6 +37,7 @@
   align-items: center;
   max-height: 30px;
   justify-content: space-between;
+  background-color: white;
 }
 
 .smallImage{

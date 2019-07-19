@@ -27,7 +27,6 @@ class ArticleAdder extends Component {
             required
             onChange={this.handleChange}
           />
-
           <select
             className={styles.input_item}
             defaultValue="Select Topic"

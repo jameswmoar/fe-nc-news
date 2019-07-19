@@ -12,15 +12,15 @@ const ArticlesCard = ({ article, user }) => {
       <main className={styles.article}>
         <div className={styles.subtext}>
           <h5>
-            <Link to={`/topics/${topic}/articles`}>{topic}</Link>
+            <Link className={styles.link} to={`/topics/${topic}/articles`}>{topic}</Link>
           </h5>{" "}
           {"\u00A0"}{" "}
           <h5>
-            <Link to={`/users/${author}`}>{author}</Link>
+            <Link className={styles.link} to={`/users/${author}`}>{author}</Link>
           </h5>{" "}
           {"\u00A0"} <h5>{formatDate(created_at)}</h5>
         </div>
-        <Link to={`/articles/${article_id}`}>
+        <Link className={styles.link} to={`/articles/${article_id}`}>
           <h3 className={styles.title}>{title}</h3>
         </Link>
       </main>

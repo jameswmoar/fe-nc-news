@@ -11,9 +11,16 @@
   width: 50px;
 }
 
-.nav_button {
+.visible_nav_button {
   border: none;
   background-color: transparent;
+  visibility: visible;
+}
+
+.hidden_nav_button {
+  border: none;
+  background-color: transparent;
+  visibility: hidden;
 }
 
 .numbers {
@@ -21,6 +28,22 @@
 }
 
 .page_num {
+  width: 50px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+}
+
+.active_page_num{
+  width: 50px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.inactive_page_num{
   width: 50px;
   height: 40px;
   border: none;

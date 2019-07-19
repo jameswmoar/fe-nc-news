@@ -6,6 +6,7 @@ import Article from "./components/Article/Article";
 import MainContent from "./components/MainContent/MainContent";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import ArticleAdder from "./components/ArticleAdder/ArticleAdder";
+import TopicAdder from "./components/TopicAdder/TopicAdder";
 
 class App extends React.Component {
   state = {
@@ -26,7 +27,8 @@ class App extends React.Component {
           <MainContent path="/users/:user_id" setSort={this.setSort} sort={sort} order={order}/>
           <Article path="/articles/:id" user={user} setSort={this.setSort} sort={sort} order={order}/>
           <ArticleAdder path="/users/:user_id/post_article" user={user}/>
-          <ErrorPage path="/*" />
+          <TopicAdder path='/topics/new_topic'/>
+          <ErrorPage path="/*"/>
         </Router>
       </div>
     );

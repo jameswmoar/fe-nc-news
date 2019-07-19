@@ -18,7 +18,7 @@ class Article extends Component {
 
   render() {
     const { isLoading, err } = this.state;
-    if (err) return <ErrorPage />;
+    if (err) return <ErrorPage err={err}/>;
     else if (isLoading) return <Loading />;
     else {
       const {
@@ -38,11 +38,11 @@ class Article extends Component {
             <main className={styles.heading_contents}>
               <div className={styles.subtext}>
                 <h5>
-                  <Link to={`/topics/${topic}/articles`}>{topic}</Link>
+                  <Link className={styles.link} to={`/topics/${topic}/articles`}>{topic}</Link>
                 </h5>
                 {"\u00A0"}
                 <h5>
-                  <Link to={`/users/${author}`}>{author}</Link>
+                  <Link className={styles.link} to={`/users/${author}`}>{author}</Link>
                 </h5>{" "}
                 {"\u00A0"}
                 <h5>{formatDate(created_at)}</h5>

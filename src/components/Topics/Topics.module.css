@@ -10,9 +10,35 @@
 .topic{
   list-style-type: none;
   display: flex;
-  padding: 1rem;
-  margin: 1rem;
+  margin-bottom: 1rem;
   text-align: center;
+}
+
+.heading{
+  display: flex;
+  align-items: center;
+}
+
+.add_img{
+  max-width: 25px;
+  max-height: 25px;
+  padding-bottom: 1rem;
+}
+
+.add_button{
+  border: none;
+  background-color: transparent;
+  height: 30px;
+}
+
+
+.link:link, .link:visited{
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover{
+  text-decoration: underline;
 }
 
 @media screen and (max-width:480px) {

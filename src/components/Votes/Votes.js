@@ -10,20 +10,21 @@ class Votes extends Component {
   };
 
   render() {
+    const { countModifier } = this.state;
     return (
       <aside className={styles.votes}>
         <button
-          className={styles.button}
+          className={countModifier === 1 ? styles.disabled_button : styles.active_button}
           onClick={() => this.handleClick(1)}
-          disabled={this.state.countModifier === 1}
+          disabled={countModifier === 1}
         >
           <img src={up} alt="Vote up" className={styles.thumb} />
         </button>
-        {this.props.score + this.state.countModifier}
+        {this.props.score + countModifier}
         <button
-          className={styles.button}
+          className={countModifier === -1 ? styles.disabled_button : styles.active_button}
           onClick={() => this.handleClick(-1)}
-          disabled={this.state.countModifier === -1}
+          disabled={countModifier === -1}
         >
           <img src={down} alt="Vote down" className={styles.thumb} />
         </button>

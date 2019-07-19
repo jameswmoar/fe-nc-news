@@ -49,6 +49,15 @@
   background-color: white;
 }
 
+.link:link, .link:visited{
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 650px) {
   .subtext {
     display: flex;

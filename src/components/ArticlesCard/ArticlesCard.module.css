@@ -7,6 +7,15 @@
   min-width: 100%;
 }
 
+.link:link, .link:visited{
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
 .article {
   display: flex;
   flex-direction: column;

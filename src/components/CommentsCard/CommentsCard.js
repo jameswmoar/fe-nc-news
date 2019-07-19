@@ -12,7 +12,7 @@ const CommentsCard = ({ comment, user, handleDelete }) => {
       <main className={styles.contents}>
         <div className={styles.subtext}>
           <h5>
-            <Link to={`/users/${comment.author}`}>{comment.author}</Link>{" "}
+            <Link className={styles.link} to={`/users/${comment.author}`}>{comment.author}</Link>{" "}
             {"\u00A0"}{" "}
           </h5>
           <h5>{formatDate(comment.created_at)}</h5>

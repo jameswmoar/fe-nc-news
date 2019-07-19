@@ -29,6 +29,15 @@
   height: 25px;
 }
 
+.link:link, .link:visited{
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
 @media screen and (max-width:650px) {
 .comment {
   margin-right: 1rem;

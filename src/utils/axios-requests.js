@@ -34,6 +34,10 @@ export const getTopics = () => {
   return request.get("/topics").then(({ data }) => data.topics);
 };
 
+export const postTopic = (topic) => {
+  return request.post("/topics/", topic).then(({data}) => data.topic)
+}
+
 export const getComments = ({ id, sort, order }, p) => {
   return request
     .get(`/articles/${id}/comments`, {

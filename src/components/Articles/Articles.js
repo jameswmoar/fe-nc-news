@@ -17,7 +17,7 @@ class Articles extends Component {
 
   render() {
     const { articles, err, isLoading, total_count, page } = this.state;
-    if (err) return <ErrorPage />;
+    if (err) return <ErrorPage err={err}/>;
     else if (isLoading) return <Loading />;
     else {
       return (
@@ -44,6 +44,7 @@ class Articles extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0,0)
     this.fetchArticles();
   }
 
@@ -68,7 +69,9 @@ class Articles extends Component {
   fetchArticles = (page = 1) => {
     getArticles(this.props, page)
       .then(({ articles, total_count }) => {
+        window.scrollTo(0,0)
         this.setState({
+          err: null,
           articles,
           isLoading: false,
           total_count,
@@ -84,7 +87,7 @@ class Articles extends Component {
   };
 
   handlePageChange = page => {
-    this.fetchArticles(page);
+    this.fetchArticles(page)
   };
 }
 

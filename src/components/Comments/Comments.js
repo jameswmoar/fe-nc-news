@@ -20,7 +20,7 @@ class Comments extends Component {
   render() {
     const { comments, err, isLoading, page, total_count } = this.state;
     const { id, user } = this.props;
-    if (err) return <ErrorPage />;
+    if (err) return <ErrorPage err={err}/>;
     else if (isLoading) return <Loading />;
     else {
       return (
@@ -29,12 +29,11 @@ class Comments extends Component {
             <CommentAdder id={id} user={user} addComment={this.addComment} />
           ) : null}
           <h1 className={styles.comments_heading}>Comments</h1>
-
+{comments.length > 0 ?
           <section className={styles.sorter}>
-            {" "}
-            <Sorter setSort={this.props.setSort} />
+             <Sorter setSort={this.props.setSort} /> 
           </section>
-
+: <section className={styles.no_comments}>No comments yet. Be the first!</section>}
           <div>
             {comments.map(comment => {
               return (
@@ -108,7 +107,6 @@ class Comments extends Component {
   };
 
   handlePageChange = page => {
-    console.log(page)
     this.fetchComments(page);
   };
 }
