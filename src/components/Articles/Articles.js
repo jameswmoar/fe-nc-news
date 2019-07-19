@@ -12,15 +12,20 @@ class Articles extends Component {
     err: null,
     isLoading: true,
     page: 1,
-    total_count: 0
+    total_count: null
   };
 
   render() {
     const { articles, err, isLoading, total_count, page } = this.state;
-    if (err) return <ErrorPage err={err}/>;
+    if (err) return <ErrorPage err={err} />;
     else if (isLoading) return <Loading />;
     else {
-      return (
+      return total_count === 0 ? (
+        <div className={styles.no_articles}>
+          <h2>No articles exist in this topic!</h2>
+          <h3>Why not create one?</h3>
+        </div>
+      ) : (
         <section className={styles.articles}>
           <div className={styles.content}>
             {articles.map(article => {
@@ -44,7 +49,7 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     this.fetchArticles();
   }
 
@@ -69,7 +74,7 @@ class Articles extends Component {
   fetchArticles = (page = 1) => {
     getArticles(this.props, page)
       .then(({ articles, total_count }) => {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0);
         this.setState({
           err: null,
           articles,
@@ -87,7 +92,7 @@ class Articles extends Component {
   };
 
   handlePageChange = page => {
-    this.fetchArticles(page)
+    this.fetchArticles(page);
   };
 }
 

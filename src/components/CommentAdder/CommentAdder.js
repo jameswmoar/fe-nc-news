@@ -31,6 +31,9 @@ class CommentAdder extends Component {
     postComment(newComment, this.props.id).then(comment => {
       this.props.addComment(comment);
     });
+    this.setState({
+      input: ""
+    });
   };
 
   handleChange = e => {
