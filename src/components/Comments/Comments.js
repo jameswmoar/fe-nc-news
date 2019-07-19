@@ -31,7 +31,7 @@ class Comments extends Component {
           <h1 className={styles.comments_heading}>Comments</h1>
 {comments.length > 0 ?
           <section className={styles.sorter}>
-             <Sorter setSort={this.props.setSort} /> 
+             <Sorter setSort={this.props.setSort} className={styles.sorting}/> 
           </section>
 : <section className={styles.no_comments}>No comments yet. Be the first!</section>}
           <div>
