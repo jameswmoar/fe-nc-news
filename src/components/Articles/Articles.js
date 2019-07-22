@@ -22,7 +22,7 @@ class Articles extends Component {
     else {
       return total_count === 0 ? (
         <div className={styles.no_articles}>
-          <h2>No articles exist in this topic!</h2>
+          <h2>No articles exist in this topic yet!</h2>
           <h3>Why not create one?</h3>
         </div>
       ) : (

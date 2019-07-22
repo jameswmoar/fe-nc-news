@@ -9,7 +9,7 @@ const Nav = ({ user }) => {
     <nav className={styles.nav}>
       <h1 className={styles.logo}>
         <Link to="/" className={styles.ncnews}>
-          NC News
+          Northcoders News
         </Link>
       </h1>
       <h2 className={styles.rightportion}>

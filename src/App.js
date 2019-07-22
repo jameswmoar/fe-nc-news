@@ -10,7 +10,7 @@ import TopicAdder from "./components/TopicAdder/TopicAdder";
 
 class App extends React.Component {
   state = {
-    user: "grumpy19",
+    user: "jessjelly",
     sort: "created_at",
     order: "desc"
   };

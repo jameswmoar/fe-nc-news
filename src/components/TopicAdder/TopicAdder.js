@@ -21,7 +21,7 @@ class TopicAdder extends Component {
           <input
             className={styles.input_item}
             name="slug"
-            placeholder="Enter summary (slug) of new topic"
+            placeholder="Enter summary of new topic - may not contain spaces"
             required
             onChange={this.handleChange}
           />
