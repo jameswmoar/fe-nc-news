@@ -3,7 +3,9 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
+  background-color: white;
+  padding-top: 1rem;
 }
 
 .arrow {
@@ -34,7 +36,7 @@
   background-color: transparent;
 }
 
-.active_page_num{
+.active_page_num {
   width: 50px;
   height: 40px;
   border: none;
@@ -43,7 +45,7 @@
   font-size: 1.1rem;
 }
 
-.inactive_page_num{
+.inactive_page_num {
   width: 50px;
   height: 40px;
   border: none;

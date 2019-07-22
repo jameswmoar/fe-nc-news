@@ -37,12 +37,12 @@ class Articles extends Component {
                 />
               );
             })}
-          </div>
           <Pagination
             handlePageChange={this.handlePageChange}
             totalCount={total_count}
             page={page}
-          />
+            />
+            </div>
         </section>
       );
     }
