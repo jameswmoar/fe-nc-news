@@ -83,7 +83,12 @@ class ArticleAdder extends Component {
     };
     postArticle(newArticle).then(article => {
       navigate(`/articles/${article.article_id}`);
-    });
+    }).catch(err => {
+      this.setState({
+        err,
+        isLoading: false
+      })
+    })
   };
 
   handleChange = e => {

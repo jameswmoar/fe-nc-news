@@ -89,7 +89,8 @@ class Comments extends Component {
     });
   };
 
-  handleDelete = id => {
+  handleDelete = (id, prevState) => {
+    console.log(prevState)
     deleteComment(id);
     const newComments = this.state.comments.filter(
       comment => comment.comment_id !== id
