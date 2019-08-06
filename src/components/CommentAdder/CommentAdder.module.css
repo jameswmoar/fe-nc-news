@@ -5,6 +5,11 @@
   margin-right: 4rem;
 }
 
+.input{
+  height: 50px;
+  padding-top: 0;
+}
+
 
 @media screen and (max-width:650px) {
   .form{

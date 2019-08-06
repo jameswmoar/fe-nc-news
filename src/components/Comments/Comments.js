@@ -89,21 +89,20 @@ class Comments extends Component {
     });
   };
 
-  handleDelete = (id, prevState) => {
-    console.log(prevState)
+  handleDelete = (id) => {
     deleteComment(id);
-    const newComments = this.state.comments.filter(
-      comment => comment.comment_id !== id
-    );
-    this.setState({
-      comments: newComments
+    this.setState((prevState) => {
+      const newComments = prevState.comments.filter(
+        comment => comment.comment_id !== id
+      );
+      return {comments: newComments}
     });
   };
 
   addComment = newComment => {
-    const updatedComments = [newComment, ...this.state.comments];
-    this.setState({
-      comments: updatedComments
+    this.setState((prevState) => {
+      const updatedComments = [newComment, ...prevState.comments];
+      return {comments: updatedComments}
     });
   };
 
